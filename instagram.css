@@ -1,0 +1,18 @@
+html[data-ytfocus-instagram-page] a[href^="/reels"],
+html[data-ytfocus-instagram-page] a[href*="/reels/"],
+html[data-ytfocus-instagram-page] svg[aria-label="Reels"],
+html[data-ytfocus-instagram-page] svg[aria-label="Short video"],
+html[data-ytfocus-instagram-page] canvas[aria-label="Reels"] {
+  display: none !important;
+}
+
+html[data-ytfocus-instagram-page="followingHome"] a[href^="/reels"],
+html[data-ytfocus-instagram-page="followingHome"] a[href*="/reels/"],
+html[data-ytfocus-instagram-page="search"] a[href^="/reels"],
+html[data-ytfocus-instagram-page="search"] a[href*="/reels/"] {
+  pointer-events: none !important;
+}
+
+html[data-ytfocus-instagram-blocked="true"] body > *:not(#ytfocus-instagram-panel) {
+  visibility: hidden !important;
+}

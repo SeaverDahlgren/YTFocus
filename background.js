@@ -1,30 +1,49 @@
 importScripts("shared-config.js");
 
-const classifyUrl = self.YTFocusConfig.classifyUrl;
-const HOME_REDIRECT_URL = self.YTFocusConfig.HOME_REDIRECT_URL;
+const DEFAULT_SETTINGS = self.YTFocusConfig.DEFAULT_SETTINGS;
+const SITES = self.YTFocusConfig.SITES;
+const getSiteForUrl = self.YTFocusConfig.getSiteForUrl;
 
-const YOUTUBE_FILTER = {
+const NAVIGATION_FILTER = {
   url: [
-    {
-      hostEquals: "www.youtube.com",
-      schemes: ["https"]
-    }
+    { hostEquals: "www.youtube.com", schemes: ["https"] },
+    { hostEquals: "www.instagram.com", schemes: ["https"] },
+    { hostEquals: "instagram.com", schemes: ["https"] }
   ]
 };
+
+function seedDefaultSettings() {
+  chrome.storage.sync.get(DEFAULT_SETTINGS, function onRead(items) {
+    chrome.storage.sync.set(Object.assign({}, DEFAULT_SETTINGS, items));
+  });
+}
 
 function maybeRedirect(details) {
   if (details.frameId !== 0 || details.tabId < 0) {
     return;
   }
 
-  const route = classifyUrl(details.url);
+  const site = getSiteForUrl(details.url);
 
-  if (!route.redirectToSubscriptions) {
+  if (!site) {
     return;
   }
 
-  chrome.tabs.update(details.tabId, { url: HOME_REDIRECT_URL });
+  chrome.storage.sync.get(DEFAULT_SETTINGS, function onRead(settings) {
+    if (!settings[site.settingKey]) {
+      return;
+    }
+
+    const route = site.classifyUrl(details.url);
+
+    if (!route.redirectTarget) {
+      return;
+    }
+
+    chrome.tabs.update(details.tabId, { url: route.redirectTarget });
+  });
 }
 
-chrome.webNavigation.onCommitted.addListener(maybeRedirect, YOUTUBE_FILTER);
-chrome.webNavigation.onHistoryStateUpdated.addListener(maybeRedirect, YOUTUBE_FILTER);
+chrome.runtime.onInstalled.addListener(seedDefaultSettings);
+chrome.webNavigation.onCommitted.addListener(maybeRedirect, NAVIGATION_FILTER);
+chrome.webNavigation.onHistoryStateUpdated.addListener(maybeRedirect, NAVIGATION_FILTER);

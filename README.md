@@ -1,13 +1,21 @@
 # YTFocus
 
-Chrome extension for a subscriptions-first YouTube.
+Chrome extension for focus-mode YouTube and Instagram.
 
 ## Behavior
 
-- Redirects YouTube home to subscriptions
-- Blocks fallback to the default home feed
-- Removes related/suggested UI on watch pages
-- Blocks Shorts, Explore, Trending, and similar discovery routes
+- YouTube:
+  - redirects home to subscriptions
+  - blocks fallback to the default home feed
+  - removes related/suggested UI on watch pages
+  - blocks Shorts, Explore, Trending, and similar discovery routes
+- Instagram:
+  - redirects home to the following feed
+  - blocks suggested feed/account surfaces and Reels
+  - allows only following home, search, recent activity, create, and your own profile
+- Popup:
+  - simple toggles for YouTube focus and Instagram focus
+  - both enabled by default
 
 ## Load In Chrome
 
@@ -19,7 +27,8 @@ Chrome extension for a subscriptions-first YouTube.
 ## Files
 
 - `manifest.json`: MV3 config
-- `background.js`: top-level route redirects
-- `shared-config.js`: route classification shared by worker + content script
-- `content.js`: SPA handling, blocked-state UI
-- `content.css`: YouTube UI suppression rules
+- `background.js`: top-level redirects + default settings seeding
+- `shared-config.js`: site registry + route classification
+- `shared-content.js`: storage, SPA hooks, blocked-panel helpers
+- `youtube-content.js` / `instagram-content.js`: site-specific focus logic
+- `popup.html` / `popup.js`: toggle UI

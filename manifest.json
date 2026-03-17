@@ -1,14 +1,17 @@
 {
   "name": "YTFocus",
-  "description": "Turns YouTube into a subscriptions-first, no-recommendations experience.",
-  "version": "0.1.0",
+  "description": "Focus mode for YouTube and Instagram.",
+  "version": "0.2.0",
   "manifest_version": 3,
   "permissions": [
+    "storage",
     "tabs",
     "webNavigation"
   ],
   "host_permissions": [
-    "https://www.youtube.com/*"
+    "https://www.youtube.com/*",
+    "https://www.instagram.com/*",
+    "https://instagram.com/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -20,15 +23,34 @@
       ],
       "js": [
         "shared-config.js",
-        "content.js"
+        "shared-content.js",
+        "youtube-content.js"
       ],
       "css": [
-        "content.css"
+        "shared-content.css",
+        "youtube.css"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.instagram.com/*",
+        "https://instagram.com/*"
+      ],
+      "js": [
+        "shared-config.js",
+        "shared-content.js",
+        "instagram-content.js"
+      ],
+      "css": [
+        "shared-content.css",
+        "instagram.css"
       ],
       "run_at": "document_start"
     }
   ],
   "action": {
+    "default_popup": "popup.html",
     "default_title": "YTFocus"
   }
 }

@@ -1,0 +1,73 @@
+[data-ytfocus-hidden="true"] {
+  display: none !important;
+}
+
+.ytfocus-panel-host {
+  align-items: center;
+  background:
+    radial-gradient(circle at top, rgba(255, 0, 0, 0.14), transparent 34%),
+    linear-gradient(180deg, #111111, #050505);
+  color: #f4f1ea;
+  display: none;
+  inset: 0;
+  justify-content: center;
+  padding: 24px;
+  position: fixed;
+  z-index: 2147483647;
+}
+
+.ytfocus-panel-host:not([hidden]) {
+  display: flex !important;
+}
+
+.ytfocus-panel {
+  background: rgba(18, 18, 18, 0.94);
+  border: 1px solid rgba(244, 241, 234, 0.14);
+  border-radius: 20px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+  max-width: 560px;
+  padding: 32px;
+  width: min(100%, 560px);
+}
+
+.ytfocus-kicker {
+  color: #ff6b57;
+  font: 600 12px/1.2 "IBM Plex Sans", "Segoe UI", sans-serif;
+  letter-spacing: 0.16em;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.ytfocus-panel h1 {
+  font: 600 32px/1.1 "IBM Plex Sans", "Segoe UI", sans-serif;
+  margin: 0 0 12px;
+}
+
+.ytfocus-copy {
+  color: rgba(244, 241, 234, 0.84);
+  font: 400 16px/1.5 "IBM Plex Sans", "Segoe UI", sans-serif;
+  margin: 0;
+}
+
+.ytfocus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ytfocus-link {
+  background: #f4f1ea;
+  border-radius: 999px;
+  color: #111111;
+  font: 600 14px/1 "IBM Plex Sans", "Segoe UI", sans-serif;
+  padding: 12px 18px;
+  text-decoration: none;
+}
+
+.ytfocus-link:hover,
+.ytfocus-link:focus-visible {
+  background: #ff6b57;
+  color: #111111;
+  outline: none;
+}
