@@ -62,12 +62,14 @@ If subscriptions are unavailable, the extension shows a blocked overlay with lin
 - create
 - login
 - all profile pages
+- direct post permalinks
+- direct reel permalinks
 
 ### Blocked routes
 
-- Reels routes
+- Reels browsing routes
 - most non-allowlisted routes
-- story/permalink routes currently classified as `other`
+- story routes and non-allowlisted media routes currently classified as `other`
 
 ### Suppressed surfaces inside allowed routes
 

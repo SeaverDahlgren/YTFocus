@@ -39,6 +39,7 @@ Reload the unpacked extension in `chrome://extensions` after code changes, then 
 - Reels routes are blocked
 - DMs remain reachable
 - profile pages remain reachable
+- direct `/p/...` and `/reel/...` links remain reachable
 - suggestion-labeled feed/account modules disappear when present
 - popup toggle disables and re-enables behavior without reinstalling
 

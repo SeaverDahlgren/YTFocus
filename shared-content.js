@@ -100,23 +100,32 @@
   function showPanel(options) {
     const panel = ensurePanel(options.panelId, options.kicker);
     const actionsNode = panel.querySelector("[data-role='actions']");
-
-    panel.querySelector("[data-role='title']").textContent = options.title;
-    panel.querySelector("[data-role='body']").textContent = options.body;
-    actionsNode.textContent = "";
-
-    (options.actions || []).forEach(function appendAction(actionConfig) {
-      const link = document.createElement("a");
-      link.className = "ytfocus-link";
-      link.href = actionConfig.href;
-      link.textContent = actionConfig.label;
-      link.addEventListener("click", function onClick(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        location.assign(link.href);
-      });
-      actionsNode.appendChild(link);
+    const signature = JSON.stringify({
+      actions: options.actions || [],
+      body: options.body,
+      title: options.title
     });
+
+    if (panel.getAttribute("data-ytfocus-signature") !== signature) {
+      panel.querySelector("[data-role='title']").textContent = options.title;
+      panel.querySelector("[data-role='body']").textContent = options.body;
+      actionsNode.textContent = "";
+
+      (options.actions || []).forEach(function appendAction(actionConfig) {
+        const link = document.createElement("a");
+        link.className = "ytfocus-link";
+        link.href = actionConfig.href;
+        link.textContent = actionConfig.label;
+        link.addEventListener("click", function onClick(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          location.assign(link.href);
+        });
+        actionsNode.appendChild(link);
+      });
+
+      panel.setAttribute("data-ytfocus-signature", signature);
+    }
 
     document.documentElement.setAttribute(options.blockedAttr, "true");
     panel.hidden = false;

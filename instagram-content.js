@@ -180,7 +180,8 @@
       route.pageType === "activity" ||
       route.pageType === "create" ||
       route.pageType === "login" ||
-      route.pageType === "profile"
+      route.pageType === "profile" ||
+      route.pageType === "media"
     ) {
       return null;
     }
@@ -190,7 +191,7 @@
     }
 
     return {
-      body: "Only following home, search, DMs, recent activity, create, login, and profile pages are allowed.",
+      body: "Only following home, search, DMs, recent activity, create, login, profile pages, and direct post or reel links are allowed.",
       title: "Route blocked"
     };
   }

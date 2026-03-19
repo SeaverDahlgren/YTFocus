@@ -42,6 +42,8 @@ Both default to `true` and are stored in `chrome.storage.sync`.
 
 - home redirects to the following feed via `/?variant=following`
 - search, DMs, recent activity, create, login, and profile pages remain reachable
+- direct post permalinks remain reachable
+- direct reel permalinks remain reachable
 - all profile pages are allowed
 - Reels and non-allowlisted routes are blocked
 - suggestion-labeled feed/account modules are hidden when detected

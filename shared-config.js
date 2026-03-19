@@ -211,7 +211,16 @@
       };
     }
 
-    if (path === "/reels" || pathMatchesPrefix(path, "/reels") || pathMatchesPrefix(path, "/reel")) {
+    if (pathMatchesPrefix(path, "/reel") || pathMatchesPrefix(path, "/p")) {
+      return {
+        pageType: "media",
+        path: path,
+        profileHandle: null,
+        redirectTarget: null
+      };
+    }
+
+    if (path === "/reels" || pathMatchesPrefix(path, "/reels")) {
       return {
         pageType: "reels",
         path: path,
@@ -220,7 +229,7 @@
       };
     }
 
-    if (path === "/p" || pathMatchesPrefix(path, "/stories")) {
+    if (pathMatchesPrefix(path, "/stories")) {
       return {
         pageType: "other",
         path: path,
