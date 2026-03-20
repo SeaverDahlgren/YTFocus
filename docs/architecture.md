@@ -45,6 +45,11 @@ Redirect logic is route-driven, not selector-driven. The background script asks 
 - which site a URL belongs to
 - whether that route has a `redirectTarget`
 
+Current redirect targets:
+
+- YouTube home -> subscriptions
+- Instagram home -> following feed
+
 ## Popup
 
 `popup.html` + `popup.js` are intentionally minimal:
@@ -52,6 +57,7 @@ Redirect logic is route-driven, not selector-driven. The background script asks 
 - two checkboxes
 - no save button
 - writes happen immediately on change
+- both toggles default to `true`
 
 Content scripts subscribe to `chrome.storage.onChanged`, so toggle flips should re-apply behavior without reloading the extension.
 
@@ -67,6 +73,12 @@ Each site controller follows the same pattern:
 
 The blocked overlay is shared and created lazily per site with a unique panel id.
 
+Shared overlay behavior in `shared-content.js`:
+
+- deduplicates identical panel renders with a signature check
+- routes action clicks through `location.assign(...)`
+- exposes shared hide/unhide helpers for DOM cleanup when toggles change
+
 ## Adding another site
 
 To add another platform, keep the same shape:
@@ -75,3 +87,4 @@ To add another platform, keep the same shape:
 - extend `manifest.json` matches and host permissions
 - create a new content controller and optional site CSS
 - wire popup state only if the site needs a user-facing toggle
+- update `README.md` and `docs/*.md` so route policy stays documented

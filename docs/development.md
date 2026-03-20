@@ -36,10 +36,11 @@ Reload the unpacked extension in `chrome://extensions` after code changes, then 
 ### Instagram
 
 - home redirects to following mode
-- Reels routes are blocked
+- Reels browsing routes are blocked
 - DMs remain reachable
 - profile pages remain reachable
 - direct `/p/...` and `/reel/...` links remain reachable
+- blocked overlay buttons navigate correctly from blocked Instagram routes
 - suggestion-labeled feed/account modules disappear when present
 - popup toggle disables and re-enables behavior without reinstalling
 
@@ -48,6 +49,7 @@ Reload the unpacked extension in `chrome://extensions` after code changes, then 
 - Instagram DOM and labels change often; suggestion hiding is text-heuristic based
 - YouTube selectors for nav and watch-page cleanup may need periodic updates
 - route redirects are more reliable than CSS-based cleanup
+- Instagram route policy is more stable than the feed-cleanup heuristics around suggestions/following availability
 
 ## Doc maintenance
 

@@ -81,6 +81,16 @@ If subscriptions are unavailable, the extension shows a blocked overlay with lin
 
 If the following feed appears unavailable, the extension blocks the page and shows allowed navigation links instead of allowing the suggested home feed through.
 
+Blocked Instagram overlays currently expose links for:
+
+- Following home
+- Search
+- DMs
+- Recent activity
+- Create
+- My profile
+- Sign in
+
 ## Notes on heuristics
 
 Route classification is deterministic. DOM hiding is heuristic and currently depends on:

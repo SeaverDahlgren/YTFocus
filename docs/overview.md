@@ -45,8 +45,9 @@ Both default to `true` and are stored in `chrome.storage.sync`.
 - direct post permalinks remain reachable
 - direct reel permalinks remain reachable
 - all profile pages are allowed
-- Reels and non-allowlisted routes are blocked
+- Reels browsing and non-allowlisted routes are blocked
 - suggestion-labeled feed/account modules are hidden when detected
+- blocked-state overlays provide direct links back to allowed routes
 
 ## Constraints
 
